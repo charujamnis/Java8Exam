@@ -1,11 +1,14 @@
 ## The Love-Letter Mystery
 
-John wants to write a love letter to his crush in Iowa but is too shy to make it obvious. He decides to change all the words in the letter into palindromes. so it can only be deciphered by someone sufficiently intelligent, passionate, and lucky to boot.
+John wants to write a love letter to his crush in Iowa but is too shy to make it obvious.
+ He decides to change all the words in the letter into palindromes.
+  so it can only be deciphered by someone sufficiently intelligent, passionate, and lucky to boot.
 
 To do this, he sets himself two 2 rules:
 
 * He can reduce the value of a letter, e.g. he can change 'd' to 'c', but he cannot change 'c' to 'd'.
-* In order to form a palindrome, if can repeatedly reduce the value of any of the letters of a word, but only down to the letter 'a'.
+* In order to form a palindrome, 
+if can repeatedly reduce the value of any of the letters of a word, but only down to the letter 'a'.
  
 
 Each reduction in the value of any letter counts as a single operation. 
