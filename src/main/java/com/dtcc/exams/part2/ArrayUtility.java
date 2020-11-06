@@ -1,40 +1,90 @@
 package com.dtcc.exams.part2;
 
-public class ArrayUtility {
-   // ArrayUtility<Integer> arrayUtility = new ArrayUtility<>(inputArray);
-    Object[] inputArray;
+import java.sql.Array;
+import java.util.*;
 
-    public ArrayUtility(Integer[] inputArray){
-        this.inputArray=inputArray;
+public class ArrayUtility<ArrayDataType> {
+//ArrayUtility<Integer> arrayUtility = new ArrayUtility<>(inputArray);
+   public Object[] inputArray;
+   public ArrayUtility(ArrayDataType[] inputArray){
+       this.inputArray=inputArray;
+   }
+
+    public Integer countDuplicatesInMerge(ArrayDataType[] arrayToMerge, ArrayDataType valueToEvaluate){
+        int count=0;
+
+        for(int i=0;i<inputArray.length;i++){
+            if(inputArray[i]==valueToEvaluate){
+                count++;
+            }
+        }
+        for(int i=0;i<arrayToMerge.length;i++){
+            if(arrayToMerge[i]==valueToEvaluate){
+                count++;
+            }
+        }
+        return count;
     }
 
-    public Integer countDuplicatesInMerge(Integer[] arrayToMerge, Integer valueToEvaluate){
+    public ArrayDataType getMostCommonFromMerge(ArrayDataType[] arrayToMerge, ArrayDataType valueToEvaluate){
 
-        return 0;
+       Map<ArrayDataType,Integer> map=new HashMap<ArrayDataType,Integer>();
+       for(int i=0;i<arrayToMerge.length;i++){  //loop for ArrayToMerge
+           if(map.containsKey(arrayToMerge[i])){
+                int value= map.get(arrayToMerge[i]);
+                map.put(arrayToMerge[i],value+1);
+           }
+           else{
+               map.put(arrayToMerge[i],1);
+           }
+       }
+
+        for(int i=0;i<inputArray.length;i++){ //loop for inputarray
+            if(map.containsKey(inputArray[i])){
+                int value= map.get(inputArray[i]);
+                map.put((ArrayDataType) inputArray[i],value+1);
+            }
+            else{
+                map.put((ArrayDataType) inputArray[i],1);
+            }
+        }
+
+       int maxValueInMap=(Collections.max(map.values()));
+       ArrayDataType mostCommon=null;
+        for (Map.Entry<ArrayDataType,Integer> entry : map.entrySet()) {
+            if (entry.getValue()==maxValueInMap) {
+                mostCommon=entry.getKey();
+            }
+        }
+
+      // return valueToEvaluate;
+       return mostCommon;
     }
 
-    public Integer countDuplicatesInMerge(Long[] arrayToMerge, Integer valueToEvaluate){
+    public ArrayDataType[] removeValue(ArrayDataType valueToRemove){
 
-        return 0;
+        List<ArrayDataType> list=new ArrayList<ArrayDataType>();
+
+        for(int i=0;i<inputArray.length;i++){
+            if(inputArray[i]!=valueToRemove){
+               list.add((ArrayDataType) inputArray[i]);
+            }
+        }
+
+        ArrayDataType[] arrayToSend= (ArrayDataType[]) new Object[list.size()];
+        arrayToSend=(ArrayDataType[]) list.toArray(arrayToSend);
+
+        return arrayToSend;
+
     }
 
-    public Integer countDuplicatesInMerge(String[] arrayToMerge, Integer valueToEvaluate){
-
-        return 0;
-    }
-
-    public Integer countDuplicatesInMerge(Object[] arrayToMerge, Integer valueToEvaluate){
-
-        return 0;
-    }
-
-    public Object[] removeValue(Object valueToRemove){
-
-        return inputArray;
-    }
-
-    // Long actual = arrayUtility.getMostCommonFromMerge(arrayToMerge, expected);
-    public Integer getMostCommonFromMerge(Object arrayToMerge, Integer valueToEvaluate ){
-        return 0;
+    public Integer getNumberOfOccurrences(ArrayDataType valueToEvaluate ){
+        int count=0;
+        for(int i=0;i<inputArray.length;i++){
+            if(inputArray[i]==valueToEvaluate){
+                count++;
+            }
+        }
+        return count;
     }
 }
